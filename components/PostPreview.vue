@@ -1,7 +1,6 @@
 <template>
-    <nuxt-link :to="'/blog/'+1">
+    <nuxt-link :to="getLink">
         <section class="post-preview">
-<!-- https://dummyimage.com/600x400/000/fff&text=hi+this+is+dumy+image             -->
             <div 
                 class="post-thumbnail" 
                 :style="{backgroundImage:'url('+thumbnails+')'}"></div>
@@ -16,6 +15,11 @@
 <script>
 
 export default {
+    computed: {
+      getLink(){
+        return this.isAdmin ? "/admin/"+this.id : '/blog/'+this.id
+      }
+    },
     props: {
         id: {
             type: String,
@@ -32,6 +36,14 @@ export default {
         thumbnails: {
             type: String,
             required: true
+        },
+        isAdmin:{
+          type: Boolean,
+          required: true
+        },
+        posts:{
+          type: Array,
+          required: true
         }
     }
 

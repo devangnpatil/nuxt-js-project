@@ -1,14 +1,23 @@
 <template>
   <div>
-    <Head />
+    <Header @sideNavToggle=" display = !display" />
+    <SideNav :show="display" />
     <nuxt />
   </div>
 </template>
 <script>
-import Head from '~/components/Head.vue'
+import Header from '~/components/Header';
+import SideNav from '~/components/SideNav';
 export default {
     components:{
-      Head:Head
+      Header,
+      SideNav
+    },
+    data(){
+      return{
+        display:false
+      }
+      
     }
 }
 </script>

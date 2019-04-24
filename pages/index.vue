@@ -4,17 +4,32 @@
 			<h1>Leates news</h1>
 		</section>
 		<section class="featured-posts">
-			<PostReview />
+      <PostPreview 
+        v-for="post in posts"
+        :key="post.id"
+        :id=post.id
+        :title=post.title
+        :isAdmin=true 
+        :contentPreview=post.content
+        :thumbnails=post.thumbnails
+        />
+
 		</section>
 	</div>	
 </template>
 
 <script>
-import PostReview from '../components/PostReview'
+import PostPreview from '../components/PostPreview'
 export default {
-	components: {
-		PostReview:PostReview
-	}
+    components:{
+        PostPreview
+    },
+    computed:{
+      posts(){
+        return this.$store.getters.loadedPost;
+      }
+    }
+
 }
 </script>
 
@@ -24,7 +39,7 @@ export default {
   position: relative;
   padding: 30px;
   box-sizing: border-box;
-  /* background-image: url('~assets/header.png'); */
+  background-image: url('https://dummyimage.com/1200x600/702e70/fff.png&text=this+is+dummy+image');
   background-position: center;
   background-size: cover;
 }
